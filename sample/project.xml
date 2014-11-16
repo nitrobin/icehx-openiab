@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+  <!-- build-number == android:versionCode -->
+  <!-- Use "android:versionCode" from already uploaded apk for purchase testing -->
+  <meta title="OpenIABSample" package="your.app.package" version="1.0.0" company="Your Company Name" build-number="1"/>
+  <app main="Main" path="Export" file="IcehxOpenIABSample" />
+
+  <source path="Source" />
+
+  <haxelib name="openfl" />
+
+  <!--<haxelib name="icehx-openiab"/>-->
+  <include name=".."/>
+
+  <assets path="Assets" rename="assets" exclude="openfl.svg" />
+  <icon path="Assets/openfl.svg" />
+
+  <section>
+    <architecture name="armv6" />
+    <architecture name="armv7" />
+  </section>
+
+  <section if="cpp debug">
+    <haxedef name="HXCPP_CHECK_POINTER"/>
+    <haxedef name="HXCPP_STACK_TRACE"/>
+    <haxedef name="HXCPP_STACK_LINE"/>
+    <haxedef name="HXCPP_DEBUG_LINK"/>
+  </section>
+
+  <android permission="android.permission.INTERNET"/>
+  <android permission="com.android.vending.BILLING"/>
+  <android permission="org.onepf.openiab.permission.BILLING"/>
+  <android permission="com.nokia.payment.BILLING"/>
+
+  <!--<android target-sdk-version="19" minimum-sdk-version="14" if="android" />-->
+
+  <include name="include-certificate.xml"/>
+  <!--<include name="../../../include-certificate.xml"/>-->
+
+
+</project>

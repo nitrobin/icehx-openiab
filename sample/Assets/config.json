@@ -1,0 +1,14 @@
+{
+    "keys": {
+        "com.google.play": "GOOGLE_IN_APP_BILLING_KEY"
+    },
+    "products": [
+        {"sku":"crystals_12", "alias": {"com.nokia.nstore" : "crystals_12"}},
+        {"sku":"crystals_27", "alias":  {}},
+        {"sku":"~~~invalid_id~~~",  "alias":  {}},
+        {"sku":"android.test.purchased",        "alias":  { "com.nokia.nstore": "android.test.purchased" }},
+        {"sku":"android.test.canceled",         "alias":  {}},
+        {"sku":"android.test.refunded",         "alias":  {}},
+        {"sku":"android.test.item_unavailable", "alias":  {}}
+    ]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension>
+
+  <classpath name="src" />
+
+  <section if="android">
+
+    <dependency name="icehx-openiab" path="dependencies/icehx-openiab"  />
+    <android extension="icehx.openiab.OpenIAB" />
+
+    <android permission="android.permission.INTERNET"/>
+    <android permission="com.android.vending.BILLING" />
+
+    <!--<android permission="org.onepf.openiab.permission.BILLING"/>-->
+
+    <!--<android permission="com.nokia.payment.BILLING"/>-->
+    <!--<android permission="com.sec.android.iap.permission.BILLING"/>-->
+
+  </section>
+  <haxedef name="icehx_openiab"/>
+
+</extension>
+
