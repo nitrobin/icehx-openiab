@@ -8,7 +8,6 @@
     "releasenote"  : "Initial version",
     "contributors" : ["nitrobin"],
     "dependencies" : {
-        "openfl"        : "",
-        "openfl-native" : ""
+        "openfl"        : ""
     }
 }
