@@ -4,7 +4,7 @@
     "license"      : "MIT",
     "tags"         : ["openfl", "extension", "google", "iap", "openiab", "purchase", "android"],
     "description"  : "Openfl extension for OpenIAB - Open In-App Billing. http://www.onepf.org/openiab/",
-    "version"      : "0.1.0",
+    "version"      : "0.1.1",
     "releasenote"  : "Initial version",
     "contributors" : ["nitrobin"],
     "dependencies" : {
