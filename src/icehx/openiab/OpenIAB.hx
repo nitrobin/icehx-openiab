@@ -74,6 +74,8 @@ class OpenIABAndroid {
     public static var debugLog:Bool = false;
     public static var preferredStoreNames:Array<String> = [];
     public static var checkInventory:Bool = false;
+    public static var availableStoreNames:Array<String> = [];
+    public static var storeSearchStrategy:Int  = OpenIABHelper.SEARCH_STRATEGY_INSTALLER;
 
     #if msignal
     public static var onServiceAvailable(default, null):msignal.Signal.Signal1<Bool> = new msignal.Signal.Signal1();
@@ -105,9 +107,9 @@ class OpenIABAndroid {
 
     public static function createService():Void {
         if (_createService == null) {
-            _createService = JNI.createStaticMethod("icehx/openiab/OpenIAB", "createService", "(Lorg/haxe/lime/HaxeObject;IZ[Ljava/lang/String;Z)V");
+            _createService = JNI.createStaticMethod("icehx/openiab/OpenIAB", "createService", "(Lorg/haxe/lime/HaxeObject;IZ[Ljava/lang/String;Z[Ljava/lang/String;I)V");
         }
-        _createService(callbackProxy, verifyMode, debugLog, preferredStoreNames, checkInventory);
+        _createService(callbackProxy, verifyMode, debugLog, preferredStoreNames, checkInventory, availableStoreNames, storeSearchStrategy);
     }
 
     public static function isServiceReady():Bool {
@@ -229,6 +231,8 @@ class OpenIABFallback
     public static var debugLog:Bool = false;
     public static var preferredStoreNames:Array<String> = [];
     public static var checkInventory:Bool = false;
+    public static var availableStoreNames:Array<String> = [];
+    public static var storeSearchStrategy:Int  = OpenIABHelper.SEARCH_STRATEGY_INSTALLER;
 
     #if msignal
     public static var onServiceAvailable(default, null):msignal.Signal.Signal1<Bool> = new msignal.Signal.Signal1();

@@ -170,7 +170,32 @@ public class OpenIAB extends Extension {
         }
     }
 
-    public static void createService(final HaxeObject callback, int verifyMode, boolean debugLog, String[] storeNames, boolean checkInventory) {
+    public static void createService(final HaxeObject callback,
+                                     final int verifyMode,
+                                     final boolean debugLog,
+                                     final String[] preferredStoreNames,
+                                     final boolean checkInventory,
+                                     final String[] availableStoreNames,
+                                     final int storeSearchStrategy) {
+        Extension.callbackHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    _createService(callback, verifyMode, debugLog, preferredStoreNames, checkInventory, availableStoreNames, storeSearchStrategy);
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
+            } // run
+        });
+    }
+
+    public static void _createService(final HaxeObject callback,
+                                     int verifyMode,
+                                     boolean debugLog,
+                                     String[] preferredStoreNames,
+                                     boolean checkInventory,
+                                     String[] availableStoreNames,
+                                     int storeSearchStrategy) {
         try {
             OpenIAB.debugLog = debugLog;
             if (mHelper != null) {
@@ -191,9 +216,14 @@ public class OpenIAB extends Extension {
             builder.setCheckInventory(checkInventory);
             builder.setVerifyMode(verifyMode);
             builder.addStoreKeys(STORE_KEYS_MAP);
-            if (storeNames != null && storeNames.length > 0) {
-                builder.addPreferredStoreName(storeNames);
+            if (preferredStoreNames != null && preferredStoreNames.length > 0) {
+                builder.addPreferredStoreName(preferredStoreNames);
             }
+            if (availableStoreNames != null && availableStoreNames.length > 0) {
+                builder.addAvailableStoreNames(availableStoreNames);
+            }
+            builder.setStoreSearchStrategy(storeSearchStrategy);
+
             mHelper = new OpenIabHelper(mainContext, builder.build());
 
 
@@ -281,9 +311,9 @@ public class OpenIAB extends Extension {
 
     public static String[] getInventoryItems() {
         if (hasInventory()) {
-            String[] result = new String[inventory.mSkuMap.size()];
+            String[] result = new String[inventory.getSkuMap().size()];
             int i = 0;
-            for (SkuDetails detail : inventory.mSkuMap.values()) {
+            for (SkuDetails detail : inventory.getSkuMap().values()) {
                 result[i] = detailToJson(detail);
                 i++;
             }
@@ -294,9 +324,9 @@ public class OpenIAB extends Extension {
 
     public static String[] getInventoryPurchases() {
         if (hasInventory()) {
-            String[] result = new String[inventory.mPurchaseMap.size()];
+            String[] result = new String[inventory.getPurchaseMap().size()];
             int i = 0;
-            for (Purchase detail : inventory.mPurchaseMap.values()) {
+            for (Purchase detail : inventory.getPurchaseMap().values()) {
                 result[i] = purchaseToJson(detail);
                 i++;
             }
